@@ -4,7 +4,7 @@
 [![NuGet Downloads](https://img.shields.io/nuget/dt/MinerUSharp.svg)](https://www.nuget.org/packages/MinerUSharp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-A C# client library for the [MinerU](https://github.com/opendatalab/MinerU) API.
+A C# client library for the self-hosted [MinerU](https://github.com/opendatalab/MinerU) API.
 
 ## Installation
 
