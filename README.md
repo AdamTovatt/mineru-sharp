@@ -1,13 +1,17 @@
 # MinerUSharp
+[![Tests](https://github.com/AdamTovatt/mineru-sharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/AdamTovatt/mineru-sharp/actions/workflows/dotnet.yml)
+[![NuGet Version](https://img.shields.io/nuget/v/MinerUSharp.svg)](https://www.nuget.org/packages/MinerUSharp/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/MinerUSharp.svg)](https://www.nuget.org/packages/MinerUSharp/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 A C# client library for the [MinerU](https://github.com/opendatalab/MinerU) API.
 
 ## Installation
 
-Add the project reference to your solution or build the library and reference the DLL.
+The easiest way to install is with [NuGet](https://www.nuget.org/packages/MinerUSharp).
 
 ```bash
-dotnet add reference path/to/MinerUSharp/MinerUSharp.csproj
+dotnet add package MinerUSharp
 ```
 
 ## Usage
