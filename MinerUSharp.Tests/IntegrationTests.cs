@@ -14,6 +14,7 @@ namespace MinerUSharp.Tests
         }
 
         [Fact]
+        [Trait("Category", "Integration")]
         public async Task ReadTestImage_ShouldReturnImageBytes()
         {
             // Act
@@ -25,6 +26,7 @@ namespace MinerUSharp.Tests
         }
 
         [Fact]
+        [Trait("Category", "Integration")]
         public async Task ParseTestImage_ShouldReturnCorrectText()
         {
             using (HttpClient http = new HttpClient())
