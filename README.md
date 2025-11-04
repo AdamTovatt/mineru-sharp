@@ -102,18 +102,24 @@ await response.SaveToFileAsync("output.md");
 Stream stream = response.GetContentStream();
 ```
 
-## Features
+## Additional Options
 
-- Fluent request builder API
-- Stream-based response handling
-- Support for multiple file formats
-- Dependency injection integration
-- Comprehensive error handling with validation details
-- Full async/await support
-- Proper resource disposal with IDisposable/IAsyncDisposable
+- The `MineruClient` constructor accepts an optional `HttpClient` parameter for custom HTTP client configuration.
+- The `ParseFileAsync` method accepts an optional `CancellationToken` parameter for cancellation support.
+
+```csharp
+using HttpClient httpClient = new HttpClient();
+
+using MineruClient client = new MineruClient("http://localhost:8080", httpClient);
+
+// The timeout of 5000 ms shown below is very short and not recommended for real scenarios, it's just an example
+// that shows that a cancellation token can be sent. It should probably come from a user controlled source.
+using CancellationTokenSource cts = new CancellationTokenSource(millisecondsDelay: 5000);
+using MineruResponse response = await client.ParseFileAsync(request, cts.Token);
+```
 
 ## Requirements
 
 - .NET 8.0 or later
-- MinerU API server running and accessible
+- [MinerU](https://github.com/opendatalab/MinerU) API server running and accessible
 

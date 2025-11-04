@@ -52,7 +52,7 @@ namespace MinerUSharp.Tests
         [Trait("Category", "Integration")]
         public async Task ParseFile_WithCancellation_ShouldThrowOperationCanceledException()
         {
-            using (CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(5000))
+            using (CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(millisecondsDelay: 5000))
             {
                 using (HttpClient http = new HttpClient())
                 {
