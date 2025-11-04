@@ -1,8 +1,8 @@
-using System.Net;
-using System.Text.Json;
 using MinerUSharp.Exceptions;
 using MinerUSharp.Internal;
 using MinerUSharp.Models;
+using System.Net;
+using System.Text.Json;
 
 namespace MinerUSharp
 {
@@ -27,7 +27,7 @@ namespace MinerUSharp
                 throw new ArgumentException("Base URL cannot be null or whitespace.", nameof(baseUrl));
 
             _baseUrl = baseUrl.TrimEnd('/');
-            
+
             if (httpClient == null)
             {
                 _httpClient = new HttpClient();
@@ -61,11 +61,11 @@ namespace MinerUSharp
             request.Validate();
 
             string requestUri = $"{_baseUrl}/file_parse";
-            
+
             using (MultipartFormDataContent content = MultipartFormDataHelper.CreateContent(request))
             {
                 HttpResponseMessage httpResponse;
-                
+
                 try
                 {
                     httpResponse = await _httpClient.PostAsync(requestUri, content, cancellationToken);
@@ -107,16 +107,16 @@ namespace MinerUSharp
                 if (response.StatusCode == HttpStatusCode.UnprocessableEntity)
                 {
                     JsonDocument document = JsonDocument.Parse(responseContent);
-                    
-                    if (document.RootElement.TryGetProperty("detail", out JsonElement detailElement) && 
+
+                    if (document.RootElement.TryGetProperty("detail", out JsonElement detailElement) &&
                         detailElement.ValueKind == JsonValueKind.Array)
                     {
                         List<ValidationError> errors = new List<ValidationError>();
-                        
+
                         foreach (JsonElement errorElement in detailElement.EnumerateArray())
                         {
                             ValidationError error = new ValidationError();
-                            
+
                             if (errorElement.TryGetProperty("loc", out JsonElement locElement))
                             {
                                 List<object> locations = new List<object>();
@@ -129,20 +129,20 @@ namespace MinerUSharp
                                 }
                                 error.Location = locations.AsReadOnly();
                             }
-                            
+
                             if (errorElement.TryGetProperty("msg", out JsonElement msgElement))
                             {
                                 error.Message = msgElement.GetString() ?? string.Empty;
                             }
-                            
+
                             if (errorElement.TryGetProperty("type", out JsonElement typeElement))
                             {
                                 error.ErrorType = typeElement.GetString() ?? string.Empty;
                             }
-                            
+
                             errors.Add(error);
                         }
-                        
+
                         validationErrors = errors.AsReadOnly();
                     }
                 }

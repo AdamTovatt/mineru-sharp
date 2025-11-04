@@ -1,5 +1,5 @@
-using System.Net;
 using MinerUSharp.Models;
+using System.Net;
 
 namespace MinerUSharp.Exceptions
 {
@@ -43,6 +43,6 @@ namespace MinerUSharp.Exceptions
             ResponseContent = responseContent;
             ValidationErrors = validationErrors;
         }
-}
+    }
 }
 

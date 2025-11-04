@@ -37,4 +37,3 @@ namespace MinerUSharp.Models
     }
 }
 
-

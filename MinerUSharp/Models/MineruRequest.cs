@@ -122,5 +122,5 @@ namespace MinerUSharp.Models
             if (EndPageId < StartPageId)
                 throw new ArgumentException("End page ID must be greater than or equal to start page ID.", nameof(EndPageId));
         }
-}
+    }
 }

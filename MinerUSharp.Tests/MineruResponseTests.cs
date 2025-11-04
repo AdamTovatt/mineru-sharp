@@ -1,8 +1,8 @@
+using EasyReasy;
+using MinerUSharp.Models;
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using EasyReasy;
-using MinerUSharp.Models;
 
 namespace MinerUSharp.Tests
 {

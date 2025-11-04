@@ -58,5 +58,5 @@ namespace MinerUSharp.Extensions
 
             return services;
         }
-}
+    }
 }

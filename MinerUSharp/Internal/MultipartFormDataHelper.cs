@@ -30,7 +30,7 @@ namespace MinerUSharp.Internal
 
             // Add other parameters
             content.Add(new StringContent(request.OutputDirectory), "output_dir");
-            
+
             foreach (string language in request.LanguageList)
             {
                 content.Add(new StringContent(language), "lang_list");
@@ -57,5 +57,5 @@ namespace MinerUSharp.Internal
 
             return content;
         }
-}
+    }
 }
