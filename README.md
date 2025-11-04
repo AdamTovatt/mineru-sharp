@@ -39,8 +39,7 @@ string markdown = await response.ReadAsMarkdownAsync();
 ### Fluent API
 
 ```csharp
-MineruRequest request = MineruRequest.Create()
-    .WithFile(fileStream)
+MineruRequest request = MineruRequest.Create(fileStream)
     .WithLanguages("en", "ch")
     .WithMarkdownResponse()
     .WithPageRange(startPage: 1, endPage: 10)
@@ -68,8 +67,7 @@ public class DocumentService
     
     public async Task<string> ParseDocumentAsync(Stream documentStream)
     {
-        MineruRequest request = MineruRequest.Create()
-            .WithFile(documentStream)
+        MineruRequest request = MineruRequest.Create(documentStream)
             .WithMarkdownResponse()
             .Build();
             
