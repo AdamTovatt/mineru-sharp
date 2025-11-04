@@ -80,10 +80,14 @@ public class DocumentService
 ```csharp
 using MineruResponse response = await client.ParseFileAsync(request);
 
-// Read as markdown
+// Read as markdown (extracts md_content from the JSON response)
 string markdown = await response.ReadAsMarkdownAsync();
 
-// Read as JSON
+// Read as strongly-typed response body
+MineruResponseBody body = await response.ReadAsResponseBodyAsync();
+string markdownFromFirstFile = body.Results["file0"].MarkdownContent;
+
+// Read as raw JSON element
 JsonElement json = await response.ReadAsJsonAsync();
 
 // Read as bytes
