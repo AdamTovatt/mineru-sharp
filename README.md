@@ -6,9 +6,14 @@
 
 A C# client library for the self-hosted [MinerU](https://github.com/opendatalab/MinerU) API.
 
+> [!NOTE]
+> Requires a self-hosted [MinerU](https://github.com/opendatalab/MinerU) API instance.
+> 
+> See the offical [MinerU](https://github.com/opendatalab/MinerU) page for instructions on self-hosting or use the wrapper [`MinerUHost`](https://github.com/AdamTovatt/mineru-host) for automatic setup.
+
 ## Installation
 
-The easiest way to install is with [NuGet](https://www.nuget.org/packages/MinerUSharp).
+The easiest way to install and use the `MinerUSharp` library is through [NuGet](https://www.nuget.org/packages/MinerUSharp).
 
 ```bash
 dotnet add package MinerUSharp
