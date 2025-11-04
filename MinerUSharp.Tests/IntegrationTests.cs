@@ -47,6 +47,28 @@ namespace MinerUSharp.Tests
                 }
             }
         }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task ParseFile_WithCancellation_ShouldThrowOperationCanceledException()
+        {
+            using (CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(5000))
+            {
+                using (HttpClient http = new HttpClient())
+                {
+                    using (MineruClient client = new MineruClient("http://localhost:8000/", http))
+                    {
+                        using (Stream imageStream = await _resourceManager.GetResourceStreamAsync(TestFile.Image01))
+                        {
+                            MineruRequest request = MineruRequest.Create(imageStream).WithLanguages("en").Build();
+
+                            await Assert.ThrowsAsync<TaskCanceledException>(async () =>
+                                await client.ParseFileAsync(request, cancellationTokenSource.Token));
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
