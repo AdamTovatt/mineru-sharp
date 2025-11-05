@@ -22,7 +22,7 @@ That's it! You've now installed `MinerUSharp`.
 
 Don't forget to also install some way of hosting the [MinerU](https://github.com/opendatalab/MinerU) API.
 
-The [official page](https://github.com/opendatalab/MinerU) has instructions. You can also use [`MinerUHost`](https://github.com/AdamTovatt/mineru-host) which automates both setup and process management for the underlying Mineru Python service. It is available as a [NuGET package](https://www.nuget.org/packages/MinerUHost) and as a prebuilt standalone application through [GitHub Releases](https://github.com/AdamTovatt/mineru-host/releases).
+The [official page](https://github.com/opendatalab/MinerU) has instructions. You can also use [`MinerUHost`](https://github.com/AdamTovatt/mineru-host) which automates both setup and process management for the underlying Mineru Python service. It is available as a [NuGet package](https://www.nuget.org/packages/MinerUHost) and as a prebuilt standalone application through [GitHub Releases](https://github.com/AdamTovatt/mineru-host/releases).
 
 ## Usage
 
