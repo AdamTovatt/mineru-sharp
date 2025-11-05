@@ -14,19 +14,28 @@ A C# client library for the self-hosted [MinerU](https://github.com/opendatalab/
 ## Installation
 
 The easiest way to install and use the `MinerUSharp` library is through [NuGet](https://www.nuget.org/packages/MinerUSharp).
-
 ```bash
 dotnet add package MinerUSharp
 ```
+
+That's it! You've now installed `MinerUSharp`.
+
+Don't forget to also install some way of hosting the [MinerU](https://github.com/opendatalab/MinerU) API.
+
+The [official page](https://github.com/opendatalab/MinerU) has instructions. You can also use [`MinerUHost`](https://github.com/AdamTovatt/mineru-host) which automates both setup and process management for the underlying Mineru Python service. It is available as a [NuGET package](https://www.nuget.org/packages/MinerUHost) and as a prebuilt standalone application through [GitHub Releases](https://github.com/AdamTovatt/mineru-host/releases).
 
 ## Usage
 
 ### Basic Usage
 
+Import the following namespaces:
 ```csharp
 using MinerUSharp;
 using MinerUSharp.Models;
+```
 
+Then use it like this:
+```csharp
 using MineruClient client = new MineruClient("http://localhost:8080");
 using FileStream fileStream = File.OpenRead("document.pdf");
 
@@ -34,6 +43,8 @@ MineruRequest request = new MineruRequest
 {
     Files = new[] { fileStream },
     LanguageList = new[] { "en", "ch" },
+    StartPageId = 1,
+    EndPageId = 10,
     ReturnMarkdown = true,
 };
 
@@ -43,7 +54,12 @@ string markdown = await response.ReadAsMarkdownAsync();
 
 ### Fluent API
 
+You can also use it with fluent API.
+This example does the same thing as the example above:
 ```csharp
+using MineruClient client = new MineruClient("http://localhost:8080");
+using FileStream fileStream = File.OpenRead("document.pdf");
+
 MineruRequest request = MineruRequest.Create(fileStream)
     .WithLanguages("en", "ch")
     .WithMarkdownResponse()
@@ -54,6 +70,8 @@ using MineruResponse response = await client.ParseFileAsync(request);
 string markdown = await response.ReadAsMarkdownAsync();
 ```
 
+## "Advanced Usage"
+The quotes are because it's not really that "advanced", but here are some more detailed code snippets:
 ### Dependency Injection
 
 ```csharp
@@ -112,6 +130,9 @@ Stream stream = response.GetContentStream();
 - The `MineruClient` constructor accepts an optional `HttpClient` parameter for custom HTTP client configuration.
 - The `ParseFileAsync` method accepts an optional `CancellationToken` parameter for cancellation support.
 
+> [!NOTE]
+> The underlying `MinerU` Python API doesn't seem to correctly handle cancelled requests. It seems to continue processing them until they are finished, at least at the time of writing this. The cancellation can still be used to free up your own thread that's calling the Python process, but the Python process will still continue in the background until it's done.
+
 ```csharp
 using HttpClient httpClient = new HttpClient();
 
@@ -126,5 +147,5 @@ using MineruResponse response = await client.ParseFileAsync(request, cts.Token);
 ## Requirements
 
 - .NET 8.0 or later
-- [MinerU](https://github.com/opendatalab/MinerU) API server running and accessible
+- [MinerU](https://github.com/opendatalab/MinerU) API server that can be accessed
 
